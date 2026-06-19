@@ -307,10 +307,5 @@ Getting the Next.js frontend (port 3000) to talk to the FastAPI backend (port 80
 - [ ] **On-chain Ledger** — Push the compliance ledger to an Ethereum smart contract for maximum auditability
 - [ ] **SOC Dashboard Integration** — Export incidents to Splunk, PagerDuty, or OpsGenie
 
----
-
-## 📜 License
-
-MIT License. See `LICENSE` for details.
 
 
