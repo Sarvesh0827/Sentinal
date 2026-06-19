@@ -313,9 +313,4 @@ Getting the Next.js frontend (port 3000) to talk to the FastAPI backend (port 80
 
 MIT License. See `LICENSE` for details.
 
----
 
-<p align="center">
-  Built with ❤️ at the intersection of AI Safety, Cryptography, and FinTech<br/>
-  <b>"The HTTPS of AI Agent Security."</b>
-</p>
