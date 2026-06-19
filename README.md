@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/screenshots/dashboard_main.png" alt="Sentinel Command Center" width="900">
+  <img src="docs/screenshots/frozen_agents.png" alt="Sentinel Command Center — Attack Detected" width="900">
 </p>
 
 <h1 align="center">🛡️ Sentinel</h1>
@@ -110,19 +110,19 @@ One-click attack simulations to demonstrate the full pipeline live: **Rapid Exfi
 
 <table>
 <tr>
-  <td><b>Command Center — Normal State</b></td>
   <td><b>Attack Detected — Agent Frozen</b></td>
-</tr>
-<tr>
-  <td><img src="docs/screenshots/dashboard_main.png" /></td>
-  <td><img src="docs/screenshots/frozen_agents.png" /></td>
-</tr>
-<tr>
   <td><b>Cryptographic Compliance Ledger</b></td>
-  <td><b>Architecture Modal & Live Alerts</b></td>
 </tr>
 <tr>
+  <td><img src="docs/screenshots/frozen_agents.png" /></td>
   <td><img src="docs/screenshots/compliance_ledger.png" /></td>
+</tr>
+<tr>
+  <td><b>Architecture Modal</b></td>
+  <td><b>Live Webhook Alert</b></td>
+</tr>
+<tr>
+  <td><img src="docs/screenshots/architecture_modal.png" /></td>
   <td><img src="docs/screenshots/alert_webhook.png" /></td>
 </tr>
 </table>
