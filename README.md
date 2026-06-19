@@ -110,7 +110,7 @@ One-click attack simulations to demonstrate the full pipeline live: **Rapid Exfi
 
 <table>
 <tr>
-  <td><b>Command Center Dashboard</b></td>
+  <td><b>Command Center — Normal State</b></td>
   <td><b>Attack Detected — Agent Frozen</b></td>
 </tr>
 <tr>
