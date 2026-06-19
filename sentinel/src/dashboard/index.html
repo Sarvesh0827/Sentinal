@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sentinel Dashboard</title>
+    <style>
+        body { font-family: sans-serif; background-color: #111; color: #eee; margin: 0; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 10px; border-bottom: 1px solid #333; text-align: left; }
+        th { background-color: #222; }
+        .frozen { color: #f44336; font-weight: bold; }
+        .row-frozen { background-color: rgba(244, 67, 54, 0.1); }
+    </style>
+</head>
+<body>
+    <h1>Sentinel: Real-Time Runaway-Agent Detector</h1>
+    <table id="agentsTable">
+        <thead>
+            <tr>
+                <th>Agent ID</th>
+                <th>Status</th>
+                <th>Trust Score</th>
+                <th>Last Anomaly Score</th>
+                <th>Reasons</th>
+                <th>Events Processed</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        const agents = {};
+
+        function render() {
+            const tbody = document.querySelector("#agentsTable tbody");
+            tbody.innerHTML = "";
+            
+            const agentIds = Object.keys(agents).sort();
+            for (const id of agentIds) {
+                const a = agents[id];
+                const tr = document.createElement("tr");
+                if (a.decision === "FREEZE") {
+                    tr.className = "row-frozen";
+                }
+                
+                tr.innerHTML = `
+                    <td>${id}</td>
+                    <td class="${a.decision === 'FREEZE' ? 'frozen' : ''}">${a.decision}</td>
+                    <td>${(a.trust_score * 100).toFixed(1)}%</td>
+                    <td>${a.anomaly_score.toFixed(3)}</td>
+                    <td>${a.reasons.join(", ")}</td>
+                    <td>${a.event_count}</td>
+                `;
+                tbody.appendChild(tr);
+            }
+        }
+
+        const source = new EventSource("/stream");
+        source.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            const agent_id = data.agent_id;
+            
+            if (!agents[agent_id]) {
+                agents[agent_id] = { event_count: 0, decision: "OK", anomaly_score: 0.0, reasons: [], trust_score: 1.0 };
+            }
+            
+            agents[agent_id].event_count += 1;
+            agents[agent_id].decision = data.decision;
+            agents[agent_id].anomaly_score = data.anomaly_score;
+            agents[agent_id].reasons = data.reasons;
+            if (data.trust_score !== undefined) {
+                agents[agent_id].trust_score = data.trust_score;
+            }
+            
+            render();
+        };
+    </script>
+</body>
+</html>
